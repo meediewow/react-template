@@ -19,11 +19,11 @@
         "url": "git+https://github.com/meediewow/react-template.git"
     },
     "scripts": {
-        "build": "npm run clean-dist && webpack --config=configs/webpack/prod.js",
+        "build": "npm run clean-dist && NODE_ENV=production webpack --config=configs/webpack/prod.js",
         "clean-dist": "rimraf dist/*",
         "lint": "eslint './src/**/*.{js,ts,tsx}' --quiet",
         "start": "npm run start-dev",
-        "start-dev": "webpack serve --config=configs/webpack/dev.js",
+        "start-dev": "NODE_ENV=development webpack serve --config=configs/webpack/dev.js",
         "start-prod": "npm run build && node express.js",
         "test": "jest --coverage --watchAll --config=configs/jest.json"
     },
@@ -40,6 +40,7 @@
         "@typescript-eslint/eslint-plugin": "^4.17.0",
         "@typescript-eslint/parser": "^4.17.0",
         "babel-loader": "^8.2.2",
+        "babel-plugin-transform-class-properties": "^6.24.1",
         "css-loader": "^5.1.2",
         "eslint": "^7.22.0",
         "eslint-config-prettier": "^8.1.0",
@@ -55,6 +56,8 @@
         "react": "^17.0.1",
         "react-dom": "^17.0.1",
         "react-hot-loader": "^4.13.0",
+        "redux-devtools": "^3.7.0",
+        "redux-devtools-extension": "^2.13.9",
         "rimraf": "^3.0.2",
         "sass-loader": "^11.0.1",
         "style-loader": "^2.0.0",
@@ -65,6 +68,10 @@
         "webpack-merge": "^5.7.3"
     },
     "dependencies": {
+        "babel-preset-minify": "^0.5.1",
+        "react-redux": "^7.2.3",
+        "redux": "^4.0.5",
+        "redux-actions": "^2.6.5",
         "styled-components": "^5.2.1"
     }
 }

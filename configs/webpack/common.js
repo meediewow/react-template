@@ -1,6 +1,8 @@
 // shared config (dev and prod)
 const { resolve } = require("path");
+const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const environment = require("./environment");
 
 module.exports = {
     resolve: {
@@ -32,7 +34,12 @@ module.exports = {
             },
         ],
     },
-    plugins: [new HtmlWebpackPlugin({ template: "index.html" })],
+    plugins: [
+        new webpack.DefinePlugin({
+            __ENVIRONMENT__: environment,
+        }),
+        new HtmlWebpackPlugin({ template: "index.html" }),
+    ],
     performance: {
         hints: false,
     },
