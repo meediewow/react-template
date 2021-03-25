@@ -14,8 +14,12 @@ module.exports = {
         rules: [
             {
                 test: /\.(gql)$/,
-                loader: "graphql-tag/loader",
                 exclude: /node_modules/,
+                use: [
+                    {
+                        loader: "graphql-tag/loader",
+                    },
+                ],
             },
             {
                 test: [/\.jsx?$/, /\.tsx?$/],
@@ -25,6 +29,20 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: ["style-loader", "css-loader"],
+            },
+            {
+                test: /\.less$/,
+                use: [
+                    {
+                        loader: "style-loader", // creates style nodes from JS strings
+                    },
+                    {
+                        loader: "css-loader", // translates CSS into CommonJS
+                    },
+                    {
+                        loader: "less-loader", // compiles Less to CSS
+                    },
+                ],
             },
             {
                 test: /\.(scss|sass)$/,

@@ -1,7 +1,8 @@
 import React from "react";
 import { Provider } from "react-redux";
 import { ApolloProvider } from "react-apollo";
-import { Users } from "components/users";
+import { BrowserRouter } from "react-router-dom";
+import { Routes } from "./routes";
 
 interface IProps {
     client: any;
@@ -11,11 +12,13 @@ interface IProps {
 export const App = React.memo(
     (props: IProps): JSX.Element => {
         return (
-            <ApolloProvider client={props.client}>
-                <Provider store={props.store}>
-                    <Users />
-                </Provider>
-            </ApolloProvider>
+            <BrowserRouter>
+                <ApolloProvider client={props.client}>
+                    <Provider store={props.store}>
+                        <Routes />
+                    </Provider>
+                </ApolloProvider>
+            </BrowserRouter>
         );
     },
 );
