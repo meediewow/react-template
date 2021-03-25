@@ -12,16 +12,12 @@ const tailLayout = {
     wrapperCol: { offset: 8, span: 16 },
 };
 
-export const Login = (): JSX.Element => {
+export const Login: React.FC = () => {
     useRedirect({ redirectOnHome: true });
     const history = useHistory();
     const onFinish = () => {
         localStorage.setItem("user", JSON.stringify({ login: true }));
         history.push(routePathes.HOME);
-    };
-
-    const onFinishFailed = (errorInfo: any) => {
-        console.log("Failed:", errorInfo);
     };
 
     return (
@@ -31,7 +27,6 @@ export const Login = (): JSX.Element => {
                 name="basic"
                 initialValues={{ remember: true }}
                 onFinish={onFinish}
-                onFinishFailed={onFinishFailed}
             >
                 <Form.Item
                     label="Username"

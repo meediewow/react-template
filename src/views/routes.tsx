@@ -1,25 +1,48 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, RouteProps } from "react-router-dom";
 import * as routePathes from "services/variables/routes";
 import { Login } from "views/login";
 import { useRedirect } from "hooks/use-redirect";
-import { Home } from "views/home";
+import { useRoutes } from "hooks/use-routes";
+import { MainTemplate } from "services/helpers/templates/main";
 
-interface IProtectedRouteProps {
-    component: React.ComponentType<any>;
-    path: string;
-}
-
-const ProtectedRoute = (props: IProtectedRouteProps): JSX.Element => {
+export const ProtectedRoute: React.FC<RouteProps> = (props) => {
     useRedirect();
-    return <Route path={props.path} component={props.component} />;
+    return <Route {...props} />;
 };
 
-export const Routes = (): JSX.Element => {
+export const Routes = React.memo(() => {
+    const routes = useRoutes();
     return (
         <Switch>
             <Route path={routePathes.LOGIN} component={Login} />
-            <ProtectedRoute path={routePathes.HOME} component={Home} />
+            {routes.map((i, index) => {
+                if (i.childItems) {
+                    return i.childItems.map((_i, _index) => {
+                        return (
+                            <ProtectedRoute
+                                exact={_i.exact}
+                                path={_i.path}
+                                component={() => (
+                                    <MainTemplate component={_i.component} />
+                                )}
+                                key={_index}
+                            />
+                        );
+                    });
+                } else {
+                    return (
+                        <ProtectedRoute
+                            exact={i.exact}
+                            path={i.path}
+                            component={() => (
+                                <MainTemplate component={i.component} />
+                            )}
+                            key={index}
+                        />
+                    );
+                }
+            })}
         </Switch>
     );
-};
+});

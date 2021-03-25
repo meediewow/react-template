@@ -2,7 +2,7 @@ import React from "react";
 import { useUsers } from "hooks/queries/use-users";
 import { UserSC } from "./styled";
 
-export const Users = (): JSX.Element => {
+export const Users: React.FC = () => {
     const { data } = useUsers();
     return (
         <div>
