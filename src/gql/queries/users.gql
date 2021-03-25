@@ -1,0 +1,6 @@
+query Users {
+    users @rest(type: "User", path: "b043df5a", method: "GET") {
+        name
+        city
+    }
+}

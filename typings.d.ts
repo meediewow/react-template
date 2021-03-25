@@ -15,3 +15,13 @@ declare module "redux-actions" {
         options?: Options,
     ): ReduxCompatibleReducer<State, any>;
 }
+
+declare module "*.graphql" {
+    const value: string;
+    export default value;
+}
+
+declare module "*.gql" {
+    const value: any;
+    export default value;
+}

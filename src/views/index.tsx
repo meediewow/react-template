@@ -1,12 +1,21 @@
 import React from "react";
 import { Provider } from "react-redux";
-import { ReduxStoreCreator } from "services/redux";
+import { ApolloProvider } from "react-apollo";
+import { Users } from "components/users";
 
-export const App = (): JSX.Element => {
-    const store = ReduxStoreCreator.createStore({});
-    return (
-        <Provider store={store}>
-            <div>test</div>
-        </Provider>
-    );
-};
+interface IProps {
+    client: any;
+    store: any;
+}
+
+export const App = React.memo(
+    (props: IProps): JSX.Element => {
+        return (
+            <ApolloProvider client={props.client}>
+                <Provider store={props.store}>
+                    <Users />
+                </Provider>
+            </ApolloProvider>
+        );
+    },
+);

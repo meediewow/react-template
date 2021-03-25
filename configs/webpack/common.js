@@ -13,6 +13,11 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.(gql)$/,
+                loader: "graphql-tag/loader",
+                exclude: /node_modules/,
+            },
+            {
                 test: [/\.jsx?$/, /\.tsx?$/],
                 use: ["babel-loader"],
                 exclude: /node_modules/,

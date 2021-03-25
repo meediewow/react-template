@@ -20,6 +20,9 @@ module.exports = {
     },
     // Fine tune rules
     rules: {
+        "react/display-name": "off",
+        "react/react-in-jsx-scope": "off",
+        "react/prop-types": "off",
         "@typescript-eslint/no-var-requires": 0,
         "@typescript-eslint/no-explicit-any": "off",
     },

@@ -19,11 +19,11 @@
         "url": "git+https://github.com/meediewow/react-template.git"
     },
     "scripts": {
-        "build": "npm run clean-dist && NODE_ENV=production webpack --config=configs/webpack/prod.js",
+        "build": "npm run clean-dist && set NODE_ENV=production && webpack --config=configs/webpack/prod.js",
         "clean-dist": "rimraf dist/*",
         "lint": "eslint './src/**/*.{js,ts,tsx}' --quiet",
         "start": "npm run start-dev",
-        "start-dev": "NODE_ENV=development webpack serve --config=configs/webpack/dev.js",
+        "start-dev": "set NODE_ENV=development && webpack serve --config=configs/webpack/dev.js",
         "start-prod": "npm run build && node express.js",
         "test": "jest --coverage --watchAll --config=configs/jest.json"
     },
@@ -37,6 +37,7 @@
         "@types/node": "^14.14.34",
         "@types/react": "^17.0.3",
         "@types/react-dom": "^17.0.2",
+        "@types/styled-components": "^5.1.9",
         "@typescript-eslint/eslint-plugin": "^4.17.0",
         "@typescript-eslint/parser": "^4.17.0",
         "babel-loader": "^8.2.2",
@@ -68,7 +69,15 @@
         "webpack-merge": "^5.7.3"
     },
     "dependencies": {
+        "@apollo/client": "^3.3.12",
+        "apollo-cache-inmemory": "^1.6.6",
+        "apollo-client": "^2.6.10",
+        "apollo-link-rest": "^0.7.3",
         "babel-preset-minify": "^0.5.1",
+        "graphql": "^15.5.0",
+        "graphql-anywhere": "^4.2.7",
+        "qs": "^6.10.1",
+        "react-apollo": "^3.1.5",
         "react-redux": "^7.2.3",
         "redux": "^4.0.5",
         "redux-actions": "^2.6.5",
