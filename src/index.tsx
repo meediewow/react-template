@@ -1,3 +1,4 @@
+import "antd/dist/antd.css";
 import * as React from "react";
 import ReactDOM from "react-dom";
 import { App } from "views";
@@ -6,7 +7,6 @@ import { ApolloClient } from "apollo-client";
 import { RestLink } from "apollo-link-rest";
 import { Variables } from "services/variables";
 import { ReduxStoreCreator } from "services/redux";
-import "antd/dist/antd.css";
 
 declare let module: any;
 if (module && module.hot) {

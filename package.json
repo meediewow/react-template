@@ -21,7 +21,7 @@
     "scripts": {
         "build": "npm run clean-dist && set NODE_ENV=production && webpack --config=configs/webpack/prod.js",
         "clean-dist": "rimraf dist/*",
-        "lint": "eslint './src/**/*.{js,ts,tsx}' --quiet",
+        "lint": "eslint './src/**/*.{js,ts,tsx}'",
         "start": "npm run start-dev",
         "start-dev": "set NODE_ENV=development && webpack serve --config=configs/webpack/dev.js",
         "start-prod": "npm run build && node express.js",
