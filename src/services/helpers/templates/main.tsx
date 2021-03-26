@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import { Layout, Menu } from "antd";
 import { useHistory, useLocation } from "react-router-dom";
 import { useRoutes } from "hooks/use-routes";
-const { Header, Content, Footer, Sider } = Layout;
+import { PageHeader } from "services/helpers/templates/header";
+import { BarcodeOutlined } from "@ant-design/icons";
+import { Variables } from "services/variables";
+import { LogoSC } from "./styled";
+
+const { Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 
 interface IProps {
@@ -22,7 +27,11 @@ export const MainTemplate = React.memo(
                     collapsed={collapsed}
                     onCollapse={() => setCollapsed((v) => !v)}
                 >
-                    <div className="logo" />
+                    <LogoSC>
+                        <BarcodeOutlined style={{ fontSize: 30 }} />
+                        {!collapsed && Variables.PROJECT_NAME}
+                    </LogoSC>
+
                     <Menu
                         theme="dark"
                         defaultSelectedKeys={[location.pathname || "/"]}
@@ -64,11 +73,8 @@ export const MainTemplate = React.memo(
                     </Menu>
                 </Sider>
                 <Layout className="site-layout">
-                    <Header
-                        className="site-layout-background"
-                        style={{ padding: 0 }}
-                    />
-                    <Content style={{ margin: "0 16px" }}>
+                    <PageHeader />
+                    <Content style={{ margin: 20 }}>
                         <props.component />
                     </Content>
                     <Footer style={{ textAlign: "center" }}>
