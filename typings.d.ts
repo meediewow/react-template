@@ -1,3 +1,4 @@
+import "redux-actions";
 declare global {
     declare type GlobalFetch = WindowOrWorkerGlobalScope;
 }
@@ -8,14 +9,6 @@ declare const __ENVIRONMENT__: {
     current: "development" | "production";
 };
 
-declare module "redux-actions" {
-    export function handleActions<State>(
-        reducerMap: ReducerMap<State, any>,
-        initialState: State,
-        options?: Options,
-    ): ReduxCompatibleReducer<State, any>;
-}
-
 declare module "*.graphql" {
     const value: string;
     export default value;
@@ -24,4 +17,12 @@ declare module "*.graphql" {
 declare module "*.gql" {
     const value: any;
     export default value;
+}
+
+declare module "redux-actions" {
+    export function handleActions<State>(
+        reducerMap: ReducerMap<State, any>,
+        initialState: State,
+        options?: Options,
+    ): ReduxCompatibleReducer<State, any>;
 }

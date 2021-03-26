@@ -1,23 +1,32 @@
 {
   "compilerOptions": {
-      "module": "commonjs",
-      "target": "es5",
-      "allowJs": true,
-      "checkJs": false,
-      "jsx": "react",
-      "baseUrl": ".",
-      "removeComments": true,
-      "noEmit": true,
-      "pretty": true,
-      "skipLibCheck": true,
-      "strict": true,
-      "esModuleInterop": true,
-      "paths": {
-        "*": [
-          "*",
-          "src/*",
-          "node_modules/*",
-        ],
-      }
+  "module": "esnext",
+  "moduleResolution": "node",
+  "target": "esnext",
+  "downlevelIteration": true,
+  "strict": true,
+  "strictFunctionTypes": false,
+  "types": ["node"],
+  "sourceMap": true,
+  "allowJs": true,
+  "allowUnreachableCode": true,
+  "experimentalDecorators": true,
+  "emitDecoratorMetadata": true,
+  "baseUrl": "./src",
+  "skipLibCheck": true,
+  "allowSyntheticDefaultImports": true,
+  "jsx": "react",
+  "incremental": true,
+  "skipDefaultLibCheck": true
   },
+  "paths": {
+    "*": [
+      "*",
+      "src/*",
+      "node_modules/*",
+    ],
+  },
+  "include": ["src", "global.d.ts", "typings.d.ts"],
+  "exclude": ["/node_modules", "/.*/"],
+  "compileOnSave": false
 }
