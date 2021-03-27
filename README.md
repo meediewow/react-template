@@ -46,9 +46,3 @@
 | `npm run lint`       | Run linter                                                                    |
 | `npm run lint --fix` | Run linter and fix issues                                                     |
 | `npm run start`      | (alias of `npm run start-dev`)                                                |
-
-## See also
-
--   [Snowpack](https://github.com/snowpackjs/snowpack)
--   [Create React App](https://github.com/facebook/create-react-app)
--   [Isomorphic Webapp Starter](https://github.com/vikpe/isomorphic-webapp-starter)
