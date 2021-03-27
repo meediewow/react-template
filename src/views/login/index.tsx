@@ -8,9 +8,6 @@ const layout = {
     labelCol: { span: 8 },
     wrapperCol: { span: 16 },
 };
-const tailLayout = {
-    wrapperCol: { offset: 8, span: 16 },
-};
 
 export const Login: React.FC = () => {
     useRedirect({ redirectOnHome: true });
@@ -54,15 +51,11 @@ export const Login: React.FC = () => {
                     <Input.Password />
                 </Form.Item>
 
-                <Form.Item
-                    {...tailLayout}
-                    name="remember"
-                    valuePropName="checked"
-                >
+                <Form.Item {...layout} name="remember" valuePropName="checked">
                     <Checkbox>Remember me</Checkbox>
                 </Form.Item>
 
-                <Form.Item {...tailLayout}>
+                <Form.Item {...layout}>
                     <Button type="primary" htmlType="submit">
                         Submit
                     </Button>

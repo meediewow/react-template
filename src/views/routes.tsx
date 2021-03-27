@@ -6,7 +6,7 @@ import { useRedirect } from "hooks/use-redirect";
 import { useRoutes } from "hooks/use-routes";
 import { MainTemplate } from "services/helpers/templates/main";
 
-export const ProtectedRoute: React.FC<RouteProps> = (props) => {
+const ProtectedRoute: React.FC<RouteProps> = (props) => {
     useRedirect();
     return <Route {...props} />;
 };
