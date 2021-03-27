@@ -14,8 +14,8 @@
 
 ## Installation
 
-1. Clone/download repo
-2. `npm install` (or `npm install` for npm)
+1. Clone/download repo `git clone https://github.com/meediewow/react-template.git`
+2. `npm install`
 
 ## Usage
 
@@ -47,11 +47,8 @@
 | `npm run lint --fix` | Run linter and fix issues                                                     |
 | `npm run start`      | (alias of `npm run start-dev`)                                                |
 
-**Note**: replace `npm` with `npm` in `package.json` if you use npm.
-
 ## See also
 
--   [React Webpack Babel Starter](https://github.com/vikpe/react-webpack-babel-starter)
 -   [Snowpack](https://github.com/snowpackjs/snowpack)
 -   [Create React App](https://github.com/facebook/create-react-app)
 -   [Isomorphic Webapp Starter](https://github.com/vikpe/isomorphic-webapp-starter)
