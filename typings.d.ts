@@ -1,13 +1,12 @@
 import "redux-actions";
 declare global {
     declare type GlobalFetch = WindowOrWorkerGlobalScope;
+    declare const __ENVIRONMENT__: {
+        production: boolean;
+        development: boolean;
+        current: "development" | "production";
+    };
 }
-
-declare const __ENVIRONMENT__: {
-    production: boolean;
-    development: boolean;
-    current: "development" | "production";
-};
 
 declare module "*.graphql" {
     const value: string;
