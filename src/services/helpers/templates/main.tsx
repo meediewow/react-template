@@ -78,7 +78,7 @@ export const MainTemplate = React.memo(
                         <props.component />
                     </Content>
                     <Footer style={{ textAlign: "center" }}>
-                        Mikhail Didevich (c) 2021
+                        Mikhail Didevich (c) 2021 - {new Date().getFullYear()}
                     </Footer>
                 </Layout>
             </Layout>
