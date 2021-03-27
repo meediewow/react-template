@@ -13,19 +13,19 @@ const globalStylesCss = css`
         height: 100%;
     }
     body {
-        height: 100%;
+        height: 100vh;
+        flex-direction: column;
+        overflow: hidden;
     }
-    #root,
-    > div {
-        height: 100%;
+    #root {
+        flex: 1;
+        > div {
+            height: 100%;
+        }
     }
 
     a:not([href]) {
         cursor: pointer;
-    }
-
-    [id="root"] {
-        height: 100%;
     }
 `;
 
