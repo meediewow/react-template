@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { Layout, Menu } from "antd";
-import { useHistory, useLocation } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import { useRoutes } from "hooks/use-routes";
 import { PageHeader } from "services/helpers/templates/header";
 import { BarcodeOutlined } from "@ant-design/icons";
 import { Variables } from "services/variables";
+import * as routePathes from "services/variables/routes";
 import { LogoSC } from "./styled";
 
 const { Content, Footer, Sider } = Layout;
@@ -27,10 +28,12 @@ export const MainTemplate = React.memo(
                     collapsed={collapsed}
                     onCollapse={() => setCollapsed((v) => !v)}
                 >
-                    <LogoSC>
-                        <BarcodeOutlined style={{ fontSize: 30 }} />
-                        {!collapsed && Variables.PROJECT_NAME}
-                    </LogoSC>
+                    <Link to={routePathes.HOME}>
+                        <LogoSC>
+                            <BarcodeOutlined style={{ fontSize: 30 }} />
+                            {!collapsed && Variables.PROJECT_NAME}
+                        </LogoSC>
+                    </Link>
 
                     <Menu
                         theme="dark"
