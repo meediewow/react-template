@@ -3,6 +3,8 @@ import { Form, Input, Button, Checkbox, Row } from "antd";
 import { useHistory } from "react-router";
 import * as routePathes from "services/variables/routes";
 import { useRedirect } from "hooks/use-redirect";
+import { setItem } from "services/helpers/local-storage/index";
+import { LocalStorageVariables } from "services/variables/local-storage";
 
 const layout = {
     labelCol: { span: 8 },
@@ -13,7 +15,7 @@ export const Login: React.FC = () => {
     useRedirect({ redirectOnHome: true });
     const history = useHistory();
     const onFinish = () => {
-        localStorage.setItem("user", JSON.stringify({ login: true }));
+        setItem(LocalStorageVariables.USER, { login: true });
         history.push(routePathes.HOME);
     };
 

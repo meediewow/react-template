@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import * as routePathes from "services/variables/routes";
+import { isAuthorized } from "services/helpers/user/authorize";
 
 interface IProps {
     redirectOnHome?: boolean;
@@ -8,9 +9,8 @@ interface IProps {
 
 export const useRedirect = (props: IProps = {}): void => {
     const history = useHistory();
-    const user = JSON.parse(localStorage.getItem("user") || "{}");
     useEffect(() => {
-        if (!user?.login) {
+        if (!isAuthorized()) {
             history.push(routePathes.LOGIN);
         } else if (props.redirectOnHome) {
             history.push(routePathes.HOME);

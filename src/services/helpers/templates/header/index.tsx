@@ -1,11 +1,13 @@
 import React, { useCallback } from "react";
 import { Layout, Row, Button } from "antd";
+import { removeItem } from "services/helpers/local-storage/index";
+import { LocalStorageVariables } from "services/variables/local-storage";
 
 const { Header } = Layout;
 
 export const PageHeader: React.FC = () => {
     const logoutHandler = useCallback(() => {
-        localStorage.removeItem("user");
+        removeItem(LocalStorageVariables.USER);
         window.location.reload();
     }, []);
 
