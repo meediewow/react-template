@@ -6,6 +6,7 @@ import { useRedirect } from "hooks/use-redirect";
 import { setItem } from "services/helpers/local-storage/index";
 import { LocalStorageVariables } from "services/variables/local-storage";
 import { FormGroup, IFormItemValidation } from "components/form";
+import { isRequired } from "services/helpers/form/validations";
 
 export const Login: React.FC = () => {
     useRedirect({ redirectOnHome: true });
@@ -28,23 +29,13 @@ export const Login: React.FC = () => {
                 name: "username",
                 type: "text",
                 placeholder: "Username",
-                validationRules: [
-                    {
-                        rule: (data: string) => Boolean(data),
-                        message: "Field is required!",
-                    },
-                ],
+                validationRules: [isRequired],
             },
             {
                 name: "password",
                 type: "password",
                 placeholder: "Password",
-                validationRules: [
-                    {
-                        rule: (data: string) => Boolean(data),
-                        message: "Field is required!",
-                    },
-                ],
+                validationRules: [isRequired],
             },
             {
                 name: "Select",
