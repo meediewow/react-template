@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Layout, Menu } from "antd";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { useRoutes } from "hooks/use-routes";
-import { PageHeader } from "services/helpers/templates/header";
+import { PageHeader } from "templates/header";
 import { BarcodeOutlined } from "@ant-design/icons";
 import { Variables } from "services/variables";
 import * as routePathes from "services/variables/routes";

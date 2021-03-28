@@ -4,7 +4,7 @@ import * as routePathes from "services/variables/routes";
 import { Login } from "views/login";
 import { useRedirect } from "hooks/use-redirect";
 import { useRoutes } from "hooks/use-routes";
-import { MainTemplate } from "services/helpers/templates/main";
+import { MainTemplate } from "templates/main";
 import { useNotifications } from "hooks/use-notifications";
 
 const ProtectedRoute: React.FC<RouteProps> = (props) => {
