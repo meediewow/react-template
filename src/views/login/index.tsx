@@ -41,12 +41,7 @@ export const Login: React.FC = () => {
                 name: "Select",
                 type: "select",
                 placeholder: "Select",
-                validationRules: [
-                    {
-                        rule: (data: string) => Boolean(data),
-                        message: "Field is required!",
-                    },
-                ],
+                validationRules: [isRequired],
                 selectOptions: [
                     {
                         title: "first",
