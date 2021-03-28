@@ -5,6 +5,7 @@ import { Login } from "views/login";
 import { useRedirect } from "hooks/use-redirect";
 import { useRoutes } from "hooks/use-routes";
 import { MainTemplate } from "services/helpers/templates/main";
+import { useNotifications } from "hooks/use-notifications";
 
 const ProtectedRoute: React.FC<RouteProps> = (props) => {
     useRedirect();
@@ -13,6 +14,7 @@ const ProtectedRoute: React.FC<RouteProps> = (props) => {
 
 export const Routes = React.memo(() => {
     const routes = useRoutes();
+    useNotifications();
     return (
         <Switch>
             <Route path={routePathes.LOGIN} component={Login} />
