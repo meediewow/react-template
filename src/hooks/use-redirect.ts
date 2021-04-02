@@ -15,5 +15,5 @@ export const useRedirect = (props: IProps = {}): void => {
         } else if (props.redirectOnHome) {
             history.push(routePathes.HOME);
         }
-    }, []);
+    }, [history, props.redirectOnHome]);
 };

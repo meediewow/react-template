@@ -2,6 +2,7 @@
 const { resolve } = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 const environment = require("./environment");
 
 module.exports = {
@@ -62,6 +63,14 @@ module.exports = {
             __ENVIRONMENT__: environment,
         }),
         new HtmlWebpackPlugin({ template: "index.html" }),
+        new CopyWebpackPlugin({
+            patterns: [
+                {
+                    from: resolve(__dirname, "../../src/assets"),
+                    to: "assets",
+                },
+            ],
+        }),
     ],
     performance: {
         hints: false,

@@ -1,0 +1,54 @@
+mutation LikePhoto($id: String!) {
+    likePhoto: likePhoto(id: $id, body: {})
+        @rest(
+            type: "Photo"
+            path: "photos/{args.id}/like"
+            method: "POST"
+            endpoint: "api"
+            bodyKey: "body"
+        ) {
+        id
+        created_at
+        width
+        height
+        color
+        blur_hash
+        likes
+        liked_by_user
+        description
+        user @type(name: "User") {
+            id
+            username
+            name
+            first_name
+            last_name
+            instagram_username
+            twitter_username
+            portfolio_url
+            profile_image @type(name: "ProfileImage") {
+                small
+                medium
+                large
+            }
+            links @type(name: "Link") {
+                self
+                html
+                photos
+                likes
+            }
+        }
+        current_user_collections
+        urls @type(name: "Url") {
+            raw
+            full
+            regular
+            small
+            thumb
+        }
+        links @type(name: "LinkTwo") {
+            self
+            html
+            download
+        }
+    }
+}

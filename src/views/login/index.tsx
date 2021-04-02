@@ -1,74 +1,61 @@
-import React, { useMemo, useState } from "react";
-import { Row } from "antd";
+import { useToken } from "hooks/mutations/use-token";
+import React, { useEffect } from "react";
 import { useHistory } from "react-router";
-import * as routePathes from "services/variables/routes";
-import { useRedirect } from "hooks/use-redirect";
-import { setItem } from "services/helpers/local-storage/index";
+import { useLocation } from "react-router-dom";
+import { Variables } from "services/variables";
+import * as localStorageHelper from "services/helpers/local-storage";
 import { LocalStorageVariables } from "services/variables/local-storage";
-import { FormGroup, IFormItemValidation } from "components/form";
-import { isRequired } from "services/helpers/form/validations";
+import * as routePathes from "services/variables/routes";
+import { IRedirectUrl } from "services/types/local-storage";
+import { notification } from "antd";
 
 export const Login: React.FC = () => {
-    useRedirect({ redirectOnHome: true });
+    const { fetch } = useToken();
     const history = useHistory();
-    const [loading, setLoading] = useState(false);
-    const onSubmit = (values: any) => {
-        setLoading(true);
-        const timer = setTimeout(() => {
-            console.log(values);
-            setItem(LocalStorageVariables.USER, { login: true });
-            history.push(routePathes.HOME);
-            setLoading(false);
-            clearTimeout(timer);
-        }, 1000);
-    };
+    const { search } = useLocation();
+    const params = new URLSearchParams(search);
+    const { code } = Object.fromEntries(params);
 
-    const formItems: IFormItemValidation[] = useMemo(() => {
-        return [
-            {
-                name: "username",
-                type: "text",
-                placeholder: "Username",
-                validationRules: [isRequired],
-            },
-            {
-                name: "password",
-                type: "password",
-                placeholder: "Password",
-                validationRules: [isRequired],
-            },
-            {
-                name: "Select",
-                type: "select",
-                placeholder: "Select",
-                validationRules: [isRequired],
-                selectOptions: [
-                    {
-                        title: "first",
-                        value: "first",
+    useEffect(() => {
+        if (code) {
+            fetch({
+                variables: {
+                    body: {
+                        code,
+                        client_id: process.env.ACCESS_KEY || "",
+                        client_secret: process.env.SECRET_KEY || "",
+                        redirect_uri: Variables.REDIRECT_URL,
+                        grant_type: "authorization_code",
                     },
-                    {
-                        title: "second",
-                        value: "second",
-                    },
-                ],
-            },
-        ];
-    }, []);
+                },
+            })
+                .then((result) => {
+                    if (result?.data?.token?.access_token) {
+                        localStorageHelper.setItem(LocalStorageVariables.USER, {
+                            token: result.data.token.access_token,
+                        });
+                    }
+                })
+                .finally(() => {
+                    const redirectUri:
+                        | IRedirectUrl
+                        | undefined = localStorageHelper.getItem(
+                        LocalStorageVariables.REDIRECT_URI,
+                    );
+                    history.push({
+                        pathname: redirectUri?.pathname || routePathes.HOME,
+                        search: redirectUri?.search || "",
+                    });
+                    localStorageHelper.removeItem(
+                        LocalStorageVariables.REDIRECT_URI,
+                    );
+                    notification.info({
+                        message: "Success!",
+                        description: "Are u successfully logged in!",
+                    });
+                });
+        }
+    }, [code, fetch, history]);
 
-    const formConfig = {
-        cancelButton: false,
-        submitText: "Log in",
-    };
-
-    return (
-        <Row justify="center" align="middle" style={{ minHeight: "100vh" }}>
-            <FormGroup
-                onSubmit={onSubmit}
-                formItems={formItems}
-                formConfig={formConfig}
-                loading={loading}
-            />
-        </Row>
-    );
+    return null;
 };

@@ -1,0 +1,15 @@
+mutation GetToken($body: any) {
+    token: getToken(body: $body)
+        @rest(
+            type: "Token"
+            path: "oauth/token"
+            method: "POST"
+            endpoint: "base"
+            bodyKey: "body"
+        ) {
+        access_token
+        token_type
+        scope
+        created_at
+    }
+}

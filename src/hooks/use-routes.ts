@@ -1,7 +1,6 @@
 import React, { useMemo } from "react";
 import * as routePathes from "services/variables/routes";
 import { Home } from "views/home";
-import { Test } from "views/test";
 
 interface IBreadcrumb {
     path: string;
@@ -15,6 +14,7 @@ export interface IRoutes {
     exact: boolean;
     icon?: React.Component;
     children?: IRoutes[];
+    isProtected: boolean;
 }
 
 const breadcrumbsMaper = (
@@ -47,9 +47,10 @@ export const useRoutes = (): IRoutes[] => {
         const devRoutes: IRoutes[] = [
             {
                 path: "/test",
-                component: Test,
+                component: Home,
                 title: "Test",
                 exact: true,
+                isProtected: true,
                 breadcrumbs: [
                     {
                         path: "/test",
@@ -61,6 +62,7 @@ export const useRoutes = (): IRoutes[] => {
                 path: "/first",
                 component: Home,
                 title: "first",
+                isProtected: true,
                 breadcrumbs: [
                     {
                         path: "first",
@@ -73,6 +75,7 @@ export const useRoutes = (): IRoutes[] => {
                         path: "/sec",
                         component: Home,
                         title: "sec",
+                        isProtected: true,
                         breadcrumbs: [
                             {
                                 path: "sec",
@@ -83,8 +86,9 @@ export const useRoutes = (): IRoutes[] => {
                         children: [
                             {
                                 path: "/third",
-                                component: Test,
+                                component: Home,
                                 title: "third",
+                                isProtected: true,
                                 breadcrumbs: [
                                     {
                                         path: "third",
@@ -109,6 +113,7 @@ export const useRoutes = (): IRoutes[] => {
                         title: "Home",
                     },
                 ],
+                isProtected: false,
                 exact: true,
             },
         ];

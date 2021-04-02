@@ -1,3 +1,8 @@
 export interface IUser {
-    login: boolean;
+    token: string;
+}
+
+export interface IRedirectUrl {
+    search: string;
+    pathname: string;
 }

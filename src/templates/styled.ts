@@ -21,7 +21,6 @@ export const TitleSC = styled.h1`
 `;
 
 export const TitleWrapperSC = styled.div`
-    margin: 0 10px;
     display: flex;
     flex-direction: column;
     margin-bottom: 25px;

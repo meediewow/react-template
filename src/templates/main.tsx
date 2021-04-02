@@ -75,6 +75,13 @@ export const MainTemplate = React.memo(
                     collapsible
                     collapsed={collapsed}
                     onCollapse={() => setCollapsed((v) => !v)}
+                    style={{
+                        overflow: "auto",
+                        height: "100vh",
+                        position: "sticky",
+                        top: 0,
+                        left: 0,
+                    }}
                 >
                     <Link to={routePathes.HOME}>
                         <LogoSC>

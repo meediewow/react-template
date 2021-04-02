@@ -1,6 +1,6 @@
 import { useQuery } from "react-apollo";
 import USERS_QUERY from "/gql/queries/users.gql";
-import { IQuery } from "./types";
+import { IQuery } from "services/types/apollo";
 
 interface IUsers {
     name: string;

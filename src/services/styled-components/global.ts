@@ -13,9 +13,8 @@ const globalStylesCss = css`
         height: 100%;
     }
     body {
-        height: 100vh;
+        /* height: 100vh; */
         flex-direction: column;
-        overflow: hidden;
     }
     #root {
         flex: 1;

@@ -4,5 +4,5 @@ import { IUser } from "services/types/local-storage";
 
 export const isAuthorized = (): boolean => {
     const user = getItem<IUser>(LocalStorageVariables.USER);
-    return user?.login || false;
+    return Boolean(user?.token) || false;
 };
