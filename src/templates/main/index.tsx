@@ -3,7 +3,7 @@ import { Layout, Menu, Breadcrumb } from "antd";
 import { HomeOutlined } from "@ant-design/icons";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { IRoutes, useRoutes } from "hooks/use-routes";
-import { PageHeader } from "templates/header";
+import { PageHeader } from "templates/main/header";
 import { BarcodeOutlined } from "@ant-design/icons";
 import { Variables } from "services/variables";
 import * as routePathes from "services/variables/routes";
@@ -25,6 +25,7 @@ export const MainTemplate = React.memo(
 
         const renderRoutes = (routes: IRoutes[]): React.ReactNode => {
             return routes.map((item, index) => {
+                if (item.hideFromMenu) return;
                 if (item.children) {
                     return (
                         <SubMenu

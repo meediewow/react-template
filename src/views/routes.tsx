@@ -1,10 +1,7 @@
 import React from "react";
 import { Switch, Route, RouteProps } from "react-router-dom";
-import * as routePathes from "services/variables/routes";
-import { Login } from "views/login";
 import { useRedirect } from "hooks/use-redirect";
 import { IRoutes, useRoutes } from "hooks/use-routes";
-import { MainTemplate } from "templates/main";
 
 const ProtectedRoute: React.FC<RouteProps> = (props) => {
     useRedirect();
@@ -26,7 +23,6 @@ export const Routes = React.memo(() => {
 
     return (
         <Switch>
-            <Route path={routePathes.LOGIN} component={Login} exact />
             {renderRoutes(routes).map((item, index) => {
                 if (item.isProtected) {
                     return (
@@ -34,7 +30,7 @@ export const Routes = React.memo(() => {
                             exact={item.exact}
                             path={item.path}
                             component={() => (
-                                <MainTemplate component={item.component} />
+                                <item.template component={item.component} />
                             )}
                             key={index}
                         />
@@ -45,7 +41,7 @@ export const Routes = React.memo(() => {
                             exact={item.exact}
                             path={item.path}
                             component={() => (
-                                <MainTemplate component={item.component} />
+                                <item.template component={item.component} />
                             )}
                             key={index}
                         />

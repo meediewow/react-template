@@ -1,7 +1,9 @@
 import React, { useMemo } from "react";
 import * as routePathes from "services/variables/routes";
 import { Home } from "views/home";
-
+import { MainTemplate } from "templates/main";
+import { Login } from "views/login";
+import { FormTemplate } from "templates/unauthorized-form";
 interface IBreadcrumb {
     path: string;
     title: string;
@@ -9,12 +11,14 @@ interface IBreadcrumb {
 export interface IRoutes {
     breadcrumbs: IBreadcrumb[];
     component: any;
+    template: any;
     path: string;
     title: string;
     exact: boolean;
     icon?: React.Component;
     children?: IRoutes[];
     isProtected: boolean;
+    hideFromMenu?: boolean;
 }
 
 const breadcrumbsMaper = (
@@ -50,6 +54,7 @@ export const useRoutes = (): IRoutes[] => {
                 component: Home,
                 title: "Test",
                 exact: true,
+                template: MainTemplate,
                 isProtected: true,
                 breadcrumbs: [
                     {
@@ -63,6 +68,7 @@ export const useRoutes = (): IRoutes[] => {
                 component: Home,
                 title: "first",
                 isProtected: true,
+                template: MainTemplate,
                 breadcrumbs: [
                     {
                         path: "first",
@@ -76,6 +82,7 @@ export const useRoutes = (): IRoutes[] => {
                         component: Home,
                         title: "sec",
                         isProtected: true,
+                        template: MainTemplate,
                         breadcrumbs: [
                             {
                                 path: "sec",
@@ -89,6 +96,7 @@ export const useRoutes = (): IRoutes[] => {
                                 component: Home,
                                 title: "third",
                                 isProtected: true,
+                                template: MainTemplate,
                                 breadcrumbs: [
                                     {
                                         path: "third",
@@ -104,8 +112,24 @@ export const useRoutes = (): IRoutes[] => {
         ];
         const prodRoutes: IRoutes[] = [
             {
+                path: routePathes.LOGIN,
+                component: Login,
+                template: FormTemplate,
+                title: "Login",
+                breadcrumbs: [
+                    {
+                        path: routePathes.HOME,
+                        title: "Home",
+                    },
+                ],
+                hideFromMenu: true,
+                isProtected: false,
+                exact: true,
+            },
+            {
                 path: routePathes.HOME,
                 component: Home,
+                template: MainTemplate,
                 title: "Home",
                 breadcrumbs: [
                     {
