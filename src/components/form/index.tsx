@@ -16,9 +16,11 @@ export interface SelectOption {
     title: string;
 }
 
+type InputTypes = "text" | "password" | "select";
+
 export interface IFormItem {
     name: string;
-    type: string;
+    type: InputTypes;
     placeholder: string;
 }
 
@@ -39,11 +41,10 @@ interface IProps extends FormProps {
 }
 
 const composeValidators = (rules: IValidationRule[]) => (value: any) => {
-    return rules.reduce(
-        (error, validator) =>
-            error || validator.rule(value) ? undefined : validator.message,
-        undefined,
-    );
+    const result = rules.reduce((error, validator) => {
+        return error || validator.rule(value) ? error : validator.message;
+    }, undefined);
+    return result;
 };
 
 export const FormGroup = (props: IProps): React.ReactElement | null => {
@@ -60,7 +61,7 @@ export const FormGroup = (props: IProps): React.ReactElement | null => {
                                         return (
                                             <TextField
                                                 field={rest}
-                                                index={index}
+                                                key={index}
                                                 validate={composeValidators(
                                                     validationRules,
                                                 )}
@@ -71,7 +72,7 @@ export const FormGroup = (props: IProps): React.ReactElement | null => {
                                         return (
                                             <PasswordItem
                                                 field={rest}
-                                                index={index}
+                                                key={index}
                                                 validate={composeValidators(
                                                     validationRules,
                                                 )}
@@ -82,7 +83,7 @@ export const FormGroup = (props: IProps): React.ReactElement | null => {
                                         return (
                                             <SelectItem
                                                 field={rest}
-                                                index={index}
+                                                key={index}
                                                 validate={composeValidators(
                                                     validationRules,
                                                 )}

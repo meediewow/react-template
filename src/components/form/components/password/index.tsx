@@ -10,7 +10,6 @@ import { WrapperSC } from "./styled";
 interface IProps {
     field: IFormItem;
     validate: FieldValidator<any> | undefined;
-    index: number;
 }
 
 export const PasswordItem = React.memo((props: IProps) => {
@@ -25,7 +24,6 @@ export const PasswordItem = React.memo((props: IProps) => {
                                 props.field.placeholder || props.field.name
                             }
                             {...input}
-                            key={props.index}
                             width={20}
                         />
                         <ErrorsList meta={meta} />

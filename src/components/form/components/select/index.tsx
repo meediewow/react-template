@@ -10,7 +10,6 @@ import { SelectSC, WrapperSC } from "./styled";
 interface IProps {
     field: IFormItem;
     validate: FieldValidator<any> | undefined;
-    index: number;
     options?: SelectOption[];
 }
 
@@ -26,7 +25,6 @@ export const SelectItem = React.memo((props: IProps) => {
                                 props.field.placeholder || props.field.name
                             }
                             {...input}
-                            key={props.index}
                             style={{ minWidth: 300, display: "flex" }}
                             defaultValue={defaultValue || ""}
                             allowClear
