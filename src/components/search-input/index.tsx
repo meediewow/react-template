@@ -41,7 +41,7 @@ export const SearchInput = React.memo(({ onSubmit, loading }: IProps) => {
                     String(
                         new URLSearchParams({
                             ...searchParams,
-                            query: value,
+                            query: value || "",
                         }),
                     ),
             });
