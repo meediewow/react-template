@@ -9,7 +9,7 @@ export const NotFound = React.memo(() => {
     return (
         <SC.WrapperSC>
             <SC.TitleSC>Error 404</SC.TitleSC>
-            <SC.ButtonSC onClick={() => history.push(routePathes.ROOT_HOME)}>
+            <SC.ButtonSC onClick={() => history.push(routePathes.HOME)}>
                 Home
             </SC.ButtonSC>
         </SC.WrapperSC>
