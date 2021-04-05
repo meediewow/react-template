@@ -42,16 +42,16 @@ export const Login: React.FC = () => {
                         | undefined = localStorageHelper.getItem(
                         LocalStorageVariables.REDIRECT_URI,
                     );
-                    history.push({
-                        pathname: redirectUri?.pathname || routePathes.HOME,
-                        search: redirectUri?.search || "",
-                    });
                     localStorageHelper.removeItem(
                         LocalStorageVariables.REDIRECT_URI,
                     );
                     notification.info({
                         message: "Success!",
                         description: "Are u successfully logged in!",
+                    });
+                    history.push({
+                        pathname: redirectUri?.pathname || routePathes.HOME,
+                        search: redirectUri?.search || "",
                     });
                 });
         }
