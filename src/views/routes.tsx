@@ -2,6 +2,7 @@ import React from "react";
 import { Switch, Route, RouteProps } from "react-router-dom";
 import { useRedirect } from "hooks/use-redirect";
 import { IRoutes, useRoutes } from "hooks/use-routes";
+import { NotFound } from "./not-found";
 
 const ProtectedRoute: React.FC<RouteProps> = (props) => {
     useRedirect();
@@ -48,6 +49,7 @@ export const Routes = React.memo(() => {
                     );
                 }
             })}
+            <Route component={NotFound} />
         </Switch>
     );
 });
