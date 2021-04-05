@@ -10,6 +10,8 @@
 -   **[Ant Design](https://ant.design/)** (4.x)
 -   **[Apollo Client](https://www.apollographql.com/)** (2.x)
 -   **[Styled components](https://styled-components.com/)** (5.x)
+-   **[Lodash](https://lodash.com/)** (4.x)
+-   **[Moment.js](https://momentjs.com/)** (2.x)
 -   Production build script (Webpack)
 -   Image loading/minification ([Image Webpack Loader](https://github.com/tcoopman/image-webpack-loader))
 -   [SASS](http://sass-lang.com/) support
