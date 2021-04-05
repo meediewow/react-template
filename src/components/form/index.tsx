@@ -53,7 +53,11 @@ export const FormGroup = (props: IProps): React.ReactElement | null => {
             {...props}
             render={(renderProps) => {
                 return (
-                    <FormSC>
+                    <FormSC
+                        onSubmit={(e) => {
+                            e.preventDefault();
+                        }}
+                    >
                         {props.formItems.map(
                             ({ validationRules, ...rest }, index) => {
                                 switch (rest.type) {
@@ -96,8 +100,12 @@ export const FormGroup = (props: IProps): React.ReactElement | null => {
                         )}
                         <ButtonsSC>
                             <Button
+                                htmlType="submit"
                                 type="primary"
-                                disabled={renderProps.submitting}
+                                disabled={
+                                    renderProps.submitting ||
+                                    renderProps.pristine
+                                }
                                 onClick={renderProps.form.submit}
                                 loading={props.loading}
                             >
