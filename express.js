@@ -1,13 +1,16 @@
 const express = require("express");
 const app = express();
-const portNumber = 3000;
-const sourceDir = "dist";
 const path = require("path");
+const dotenv = require("dotenv").config({
+    path: path.join(path.resolve(__dirname), ".env.production"),
+});
+const sourceDir = "dist";
+const APP_PORT = +dotenv.parsed.APP_PORT || 3000;
 
 app.use(express.static(sourceDir));
 
-app.listen(portNumber, () => {
-    console.log(`Express web server started: http://localhost:${portNumber}`);
+app.listen(APP_PORT, () => {
+    console.log(`Express web server started: http://localhost:${APP_PORT}`);
     console.log(`Serving content from /${sourceDir}/`);
 });
 
