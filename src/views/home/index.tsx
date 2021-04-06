@@ -27,7 +27,6 @@ export const Home: React.FC = (): JSX.Element => {
                 pageSize: Number(queryParams.pageSize) || 10,
             },
         });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const onSubmit = useCallback(
