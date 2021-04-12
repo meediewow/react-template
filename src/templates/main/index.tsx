@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Layout, Menu, Breadcrumb } from "antd";
 import { HomeOutlined } from "@ant-design/icons";
 import { Link, useHistory, useLocation } from "react-router-dom";
-import { IRoutes, useRoutes } from "hooks/use-routes";
+import { IRoute, useRoutes } from "hooks/use-routes";
 import { PageHeader } from "templates/main/header";
 import { BarcodeOutlined } from "@ant-design/icons";
 import { Variables } from "services/variables";
@@ -23,7 +23,7 @@ export const MainTemplate = React.memo(
         const history = useHistory();
         const location = useLocation();
 
-        const renderRoutes = (routes: IRoutes[]): React.ReactNode => {
+        const renderRoutes = (routes: IRoute[]): React.ReactNode => {
             return routes.map((item, index) => {
                 if (item.hideFromMenu) return;
                 if (item.children) {
@@ -51,11 +51,11 @@ export const MainTemplate = React.memo(
             });
         };
 
-        const findRoute = (routes: IRoutes[]): IRoutes | undefined => {
-            const reduceRoutes = (routes: IRoutes[]) => {
+        const findRoute = (routes: IRoute[]): IRoute | undefined => {
+            const reduceRoutes = (routes: IRoute[]) => {
                 return routes.reduce(reducer, []);
             };
-            const reducer = (acc: IRoutes[], route: IRoutes): IRoutes[] => {
+            const reducer = (acc: IRoute[], route: IRoute): IRoute[] => {
                 if (route.children) {
                     return [...acc, route, ...reduceRoutes(route.children)];
                 } else {

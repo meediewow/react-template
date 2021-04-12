@@ -8,7 +8,7 @@ interface IBreadcrumb {
     path: string;
     title: string;
 }
-export interface IRoutes {
+export interface IRoute {
     breadcrumbs: IBreadcrumb[];
     component: any;
     template: any;
@@ -16,17 +16,17 @@ export interface IRoutes {
     title: string;
     exact: boolean;
     icon?: React.Component;
-    children?: IRoutes[];
+    children?: IRoute[];
     isProtected: boolean;
     hideFromMenu?: boolean;
 }
 
 const breadcrumbsMaper = (
-    item: IRoutes,
+    item: IRoute,
     index: number,
-    array: IRoutes[],
+    array: IRoute[],
     parentBreadcrumbs: IBreadcrumb[] = [],
-): IRoutes => {
+): IRoute => {
     if (item.children) {
         return {
             ...item,
@@ -46,9 +46,9 @@ const breadcrumbsMaper = (
     }
 };
 
-export const useRoutes = (): IRoutes[] => {
+export const useRoutes = (): IRoute[] => {
     return useMemo(() => {
-        const devRoutes: IRoutes[] = [
+        const devRoutes: IRoute[] = [
             {
                 path: "/test",
                 component: Home,
@@ -110,7 +110,7 @@ export const useRoutes = (): IRoutes[] => {
                 ],
             },
         ];
-        const prodRoutes: IRoutes[] = [
+        const prodRoutes: IRoute[] = [
             {
                 path: routePathes.LOGIN,
                 component: Login,
